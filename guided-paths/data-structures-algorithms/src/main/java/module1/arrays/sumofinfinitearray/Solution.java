@@ -10,11 +10,14 @@ public class Solution {
 
         List<Integer> allSums = new ArrayList<>();
         for(List<Long> query : queries) {
-            int sum = 0;
-            for(int i = query.get(0).intValue() - 1; i < query.get(1).intValue(); i++) {
-                sum += elementAt(arr, i);
+            long sum = 0;
+            System.out.println("----------");
+            for(int i = query.get(0).intValue(); i <= query.get(1).intValue(); i++) {
+                sum += elementAt(arr, i-1);
+                System.out.println(String.format("-> %d", sum));
             }
-            allSums.add(sum);
+            allSums.add((int) sum);
+            System.out.println("----------");
         }
         return allSums;
     }
