@@ -1,2 +1,2 @@
 # codingninjas
-Repo for condingninjas.com
+Repo for codingninjas.com
