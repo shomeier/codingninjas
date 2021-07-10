@@ -11,7 +11,6 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SolutionTest {
 
@@ -35,14 +34,7 @@ class SolutionTest {
     }
 
     @Test
-    void test() {
-        Long l = 247183130L;
-        System.out.println(String.format("L: %s", l));
-    }
-
-
-    @Test
-    void testFromInputFile() throws Exception {
+    void testBig() throws Exception {
 
         String inputFile = "input3.txt";
         String outputFile = "output3.txt";
@@ -69,8 +61,7 @@ class SolutionTest {
                         queries.add(query);
                     }
                     final List<? extends Number> result = Solution.sumInRanges(arr, N, queries, Q);
-                    assertTrue(containsSameElements(expectedOutput.get(t), result),
-                        String.format("Test case number %d failed. Expected: %n%s Actual: %n%s", t, expectedOutput.get(t), result));
+                    assertEquals(expectedOutput.get(t), result);
                 }
         } catch (IOException e) {
             e.printStackTrace();
@@ -94,20 +85,5 @@ class SolutionTest {
         }
 
         return expectedOutput;
-    }
-
-    private boolean containsSameElements(List<? extends Number> a, List<? extends Number> b) {
-
-        if (a.size() != b.size()) {
-            return false;
-        }
-
-        for(int i = 0; i < a.size(); i++) {
-            if (a.get(i) != b.get(i)) {
-                return false;
-            }
-        }
-
-        return true;
     }
 }
