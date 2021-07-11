@@ -22,8 +22,9 @@ public class SolutionPrefixSumArray {
             long L = query.get(0) - 1;
             long R = query.get(1) - 1;
 
-            long sumUpToL = (L == 0) ? 0 : getElementAtInfinitePsa((int) ((L - 1) % mod), psa);
-            long sumUpToR = getElementAtInfinitePsa((int) (R % mod), psa);
+            // do not '% mod' the indices
+            long sumUpToL = (L == 0) ? 0 : getElementAtInfinitePsa(L - 1, psa);
+            long sumUpToR = getElementAtInfinitePsa(R, psa);
             allSums.add((int) ((sumUpToR - sumUpToL + mod) % mod));
         }
         return allSums;
@@ -40,8 +41,8 @@ public class SolutionPrefixSumArray {
         return prefixSumArray;
     }
 
-    private static long getElementAtInfinitePsa(int index, long[] psa) {
+    private static long getElementAtInfinitePsa(long index, long[] psa) {
         long multiplier = (index / psa.length) % mod;
-        return ((multiplier * psa[psa.length - 1]) % mod + (psa[index % psa.length]) % mod) % mod;
+        return ((multiplier * psa[psa.length - 1]) % mod + psa[(int) (index % psa.length)]) % mod;
     }
 }
